@@ -3,6 +3,7 @@ package proyectojava;
 import javax.swing.JOptionPane;
 
 public class Main {
+
     public static void main(String[] args) {
         EmpleadoManager empleadoManager = new EmpleadoManager();
         ClienteManager clienteManager = new ClienteManager();
@@ -12,12 +13,12 @@ public class Main {
 
         do {
             String mensaje = "1. Agregar empleado\n"
-                            + "2. Consultar empleado\n"
-                            + "3. Inactivar empleado\n"
-                            + "4. Agregar cliente\n" // Nuestra parte: Agregar cliente
-                            + "5. Consultar cliente\n" // Nuestra parte: Consultar cliente
-                            + "6. Inactivar cliente\n" // Nuestra parte: Inactivar cliente
-                            + "7. Salir";
+                    + "2. Consultar empleado\n"
+                    + "3. Inactivar empleado\n"
+                    + "4. Agregar cliente\n"
+                    + "5. Consultar cliente\n"
+                    + "6. Inactivar cliente\n"
+                    + "7. Salir";
             opcion = Integer.parseInt(JOptionPane.showInputDialog(mensaje));
 
             switch (opcion) {
@@ -57,37 +58,36 @@ public class Main {
                     }
                     break;
                 case 4:
-                    String clienteNombre = JOptionPane.showInputDialog("Ingrese el nombre del cliente");
-                    String clienteApellidos = JOptionPane.showInputDialog("Ingrese los apellidos del cliente");
-                    String clienteUsuario = JOptionPane.showInputDialog("Ingrese el usuario del cliente");
-                    boolean clienteHabilitado = Boolean.parseBoolean(JOptionPane.showInputDialog("¿Está habilitado? (true/false)"));
+                    nombre = JOptionPane.showInputDialog("Ingrese el nombre del cliente");
+                    apellido = JOptionPane.showInputDialog("Ingrese el apellido del cliente");
+                    usuario = JOptionPane.showInputDialog("Ingrese el usuario del cliente");
+                    password = JOptionPane.showInputDialog("Ingrese la contraseña del cliente");
+                    estado = JOptionPane.showInputDialog("Ingrese el estado del cliente");
 
-                    Cliente nuevoCliente = new Cliente(clienteNombre, clienteApellidos, clienteUsuario, clienteHabilitado);
+                    Cliente nuevoCliente = new Cliente();
+                    nuevoCliente.setNombre(nombre);
+                    nuevoCliente.setApellido(apellido);
+                    nuevoCliente.setUsuario(usuario);
+                    nuevoCliente.setPassword(password);
+                    nuevoCliente.setEstado(estado);
+
                     clienteManager.agregarCliente(nuevoCliente);
                     break;
                 case 5:
-                    clienteUsuario = JOptionPane.showInputDialog("Ingrese el usuario del cliente que desea consultar");
-                    Cliente clienteConsultado = clienteManager.consultarClientePorUsuario(clienteUsuario);
+                    usuario = JOptionPane.showInputDialog("Ingrese el usuario del cliente que desea consultar");
+                    Cliente clienteConsultado = clienteManager.consultarCliente(usuario);
                     if (clienteConsultado != null) {
-                        JOptionPane.showMessageDialog(null, "Información del Cliente:\n" +
-                                "Nombre: " + clienteConsultado.getNombre() + "\n" +
-                                "Apellidos: " + clienteConsultado.getApellidos() + "\n" +
-                                "Usuario: " + clienteConsultado.getUsuario() + "\n" +
-                                "Habilitado: " + (clienteConsultado.isHabilitado() ? "Sí" : "No"));
+                        JOptionPane.showMessageDialog(null, clienteConsultado.informacion());
                     } else {
                         JOptionPane.showMessageDialog(null, "Cliente no encontrado");
                     }
                     break;
                 case 6:
-                    clienteUsuario = JOptionPane.showInputDialog("Ingrese el usuario del cliente que desea inactivar");
-                    clienteManager.inactivarUsuario(clienteUsuario);
-                    Cliente clienteInactivado = clienteManager.consultarClientePorUsuario(clienteUsuario);
+                    usuario = JOptionPane.showInputDialog("Ingrese el usuario del cliente que desea inactivar");
+                    clienteManager.inactivarCliente(usuario);
+                    Cliente clienteInactivado = clienteManager.consultarCliente(usuario);
                     if (clienteInactivado != null) {
-                        JOptionPane.showMessageDialog(null, "Cliente inactivado:\n" +
-                                "Nombre: " + clienteInactivado.getNombre() + "\n" +
-                                "Apellidos: " + clienteInactivado.getApellidos() + "\n" +
-                                "Usuario: " + clienteInactivado.getUsuario() + "\n" +
-                                "Habilitado: " + (clienteInactivado.isHabilitado() ? "Sí" : "No"));
+                        JOptionPane.showMessageDialog(null, "Cliente inactivado exitosamente");
                     } else {
                         JOptionPane.showMessageDialog(null, "Cliente no encontrado");
                     }

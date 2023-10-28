@@ -1,4 +1,5 @@
 package proyectojava;
+
 public class Empleado {
     private String Nombre;
     private String Apellido;

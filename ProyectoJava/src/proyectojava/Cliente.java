@@ -1,94 +1,63 @@
 package proyectojava;
 
-import java.util.ArrayList;
-
 public class Cliente {
-    private String nombre;
-    private String apellidos;
-    private String usuario;
-    private boolean habilitado;
-
-    // Lista de clientes
-    private static ArrayList<Cliente> listaClientes = new ArrayList<>();
-
-    // Constructor
-    public Cliente(String nombre, String apellidos, String usuario, boolean habilitado) {
-        this.nombre = nombre;
-        this.apellidos = apellidos;
-        this.usuario = usuario;
-        this.habilitado = habilitado;
+    private String Nombre;
+    private String Apellido;
+    private String Usuario;
+    private String Password;
+    private String Estado;
+    
+    public Cliente(){
+        this.Nombre="";
+        this.Apellido="";
+        this.Usuario="";
+        this.Password="";
+        this.Estado="";
     }
-
-    // Getters y setters
 
     public String getNombre() {
-        return nombre;
+        return Nombre;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNombre(String Nombre) {
+        this.Nombre = Nombre;
     }
 
-    public String getApellidos() {
-        return apellidos;
+    public String getApellido() {
+        return Apellido;
     }
 
-    public void setApellidos(String apellidos) {
-        this.apellidos = apellidos;
+    public void setApellido(String Apellido) {
+        this.Apellido = Apellido;
     }
 
     public String getUsuario() {
-        return usuario;
+        return Usuario;
     }
 
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
+    public void setUsuario(String Usuario) {
+        this.Usuario = Usuario;
     }
 
-    public boolean isHabilitado() {
-        return habilitado;
+    public String getPassword() {
+        return Password;
     }
 
-    public void setHabilitado(boolean habilitado) {
-        this.habilitado = habilitado;
+    public void setPassword(String Password) {
+        this.Password = Password;
     }
 
-    // agregar
-    public static void agregarCliente(Cliente nuevoCliente) {
-        listaClientes.add(nuevoCliente);
+    public String getEstado() {
+        return Estado;
     }
 
-    // consultar por usuario
-    public static Cliente consultarClientePorUsuario(String usuario) {
-        for (Cliente cliente : listaClientes) {
-            if (cliente.getUsuario().equals(usuario)) {
-                return cliente;
-            }
-        }
-        return null; // Si no se encuentra el cliente
+    public void setEstado(String Estado) {
+        this.Estado = Estado;
     }
-
-    // inactivar
-    public static void inactivarUsuario(String usuario) {
-        for (Cliente cliente : listaClientes) {
-            if (cliente.getUsuario().equals(usuario)) {
-                cliente.setHabilitado(false);
-                return;
-            }
-        }
-    }
-
-    // mostrar
-    public void mostrarInformacion() {
-        System.out.println("Nombre: " + nombre);
-        System.out.println("Apellidos: " + apellidos);
-        System.out.println("Usuario: " + usuario);
-        System.out.println("Habilitado: " + (habilitado ? "Sí" : "No"));
-    }
-
-    public static void mostrarTodosLosClientes() {
-        for (Cliente cliente : listaClientes) {
-            cliente.mostrarInformacion();
-        }
+    
+    
+    public String informacion() {
+        return "Nombre: " + Nombre + "\nApellidos: " + Apellido + "\nUsuario: " + Usuario + "\nPassword: " + Password + "\nEstado: " + Estado;
     }
 }
+
