@@ -1,16 +1,31 @@
 package proyectojava;
-class ClienteManager {
 
-    void agregarCliente(Cliente nuevoCliente) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+import java.util.ArrayList;
+
+public class ClienteManager {
+    private ArrayList<Cliente> clientes;
+
+    public ClienteManager() {
+        this.clientes = new ArrayList<>();
     }
 
-    Cliente consultarClientePorUsuario(String clienteUsuario) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void agregarCliente(Cliente cliente) {
+        this.clientes.add(cliente);
     }
 
-    void inactivarUsuario(String clienteUsuario) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+public Cliente consultarCliente(String usuario) {
+    for (Cliente cliente : this.clientes) {
+        if (cliente.getUsuario().equals(usuario)) {
+            return cliente;
+        }
     }
-    
+    return null;
+}
+
+    public void inactivarCliente(String usuario) {
+        Cliente cliente = this.consultarCliente(usuario);
+        if (cliente != null) {
+            cliente.setEstado("Inactivo");
+        }
+    }
 }
