@@ -53,7 +53,7 @@ public class Main {
                     }
                     break;
                 case 4:
-                    JOptionPane.showMessageDialog(null, "Saliendo del programa");
+                    JOptionPane.showMessageDialog(null, "Gracias por usar nuestro programa");
                     break;
                 default:
                     JOptionPane.showMessageDialog(null, "Opción inválida");

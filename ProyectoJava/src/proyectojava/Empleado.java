@@ -53,7 +53,10 @@ public class Empleado {
     public void setEstado(String Estado) {
         this.Estado = Estado;
     }
+    
+    
     public String informacion() {
         return "Nombre: " + Nombre + "\nApellidos: " + Apellido + "\nUsuario: " + Usuario + "\nPassword: " + Password + "\nEstado: " + Estado;
     }
 }
+
