@@ -4,7 +4,8 @@ import javax.swing.JOptionPane;
 
 public class Main {
     public static void main(String[] args) {
-        EmpleadoManager manager = new EmpleadoManager();
+        EmpleadoManager empleadoManager = new EmpleadoManager();
+        ClienteManager clienteManager = new ClienteManager();
         String usuario;
         String nombre, apellido, estado, password;
         int opcion;
@@ -13,7 +14,10 @@ public class Main {
             String mensaje = "1. Agregar empleado\n"
                             + "2. Consultar empleado\n"
                             + "3. Inactivar empleado\n"
-                            + "4. Salir";
+                            + "4. Agregar cliente\n" // Nuestra parte: Agregar cliente
+                            + "5. Consultar cliente\n" // Nuestra parte: Consultar cliente
+                            + "6. Inactivar cliente\n" // Nuestra parte: Inactivar cliente
+                            + "7. Salir";
             opcion = Integer.parseInt(JOptionPane.showInputDialog(mensaje));
 
             switch (opcion) {
@@ -24,18 +28,18 @@ public class Main {
                     password = JOptionPane.showInputDialog("Ingrese la contraseña del empleado");
                     estado = JOptionPane.showInputDialog("Ingrese el estado del empleado");
 
-                    Empleado empleado1 = new Empleado();
-                    empleado1.setNombre(nombre);
-                    empleado1.setApellido(apellido);
-                    empleado1.setUsuario(usuario);
-                    empleado1.setPassword(password);
-                    empleado1.setEstado(estado);
+                    Empleado empleado = new Empleado();
+                    empleado.setNombre(nombre);
+                    empleado.setApellido(apellido);
+                    empleado.setUsuario(usuario);
+                    empleado.setPassword(password);
+                    empleado.setEstado(estado);
 
-                    manager.agregarEmpleado(empleado1);
+                    empleadoManager.agregarEmpleado(empleado);
                     break;
                 case 2:
                     usuario = JOptionPane.showInputDialog("Ingrese el usuario del empleado que desea consultar");
-                    Empleado empleadoConsultado = manager.consultarEmpleado(usuario);
+                    Empleado empleadoConsultado = empleadoManager.consultarEmpleado(usuario);
                     if (empleadoConsultado != null) {
                         JOptionPane.showMessageDialog(null, empleadoConsultado.informacion());
                     } else {
@@ -44,8 +48,8 @@ public class Main {
                     break;
                 case 3:
                     usuario = JOptionPane.showInputDialog("Ingrese el usuario del empleado que desea inactivar");
-                    manager.inactivarEmpleado(usuario);
-                    empleadoConsultado = manager.consultarEmpleado(usuario);
+                    empleadoManager.inactivarEmpleado(usuario);
+                    empleadoConsultado = empleadoManager.consultarEmpleado(usuario);
                     if (empleadoConsultado != null) {
                         JOptionPane.showMessageDialog(null, empleadoConsultado.informacion());
                     } else {
@@ -53,12 +57,48 @@ public class Main {
                     }
                     break;
                 case 4:
+                    String clienteNombre = JOptionPane.showInputDialog("Ingrese el nombre del cliente");
+                    String clienteApellidos = JOptionPane.showInputDialog("Ingrese los apellidos del cliente");
+                    String clienteUsuario = JOptionPane.showInputDialog("Ingrese el usuario del cliente");
+                    boolean clienteHabilitado = Boolean.parseBoolean(JOptionPane.showInputDialog("¿Está habilitado? (true/false)"));
+
+                    Cliente nuevoCliente = new Cliente(clienteNombre, clienteApellidos, clienteUsuario, clienteHabilitado);
+                    clienteManager.agregarCliente(nuevoCliente);
+                    break;
+                case 5:
+                    clienteUsuario = JOptionPane.showInputDialog("Ingrese el usuario del cliente que desea consultar");
+                    Cliente clienteConsultado = clienteManager.consultarClientePorUsuario(clienteUsuario);
+                    if (clienteConsultado != null) {
+                        JOptionPane.showMessageDialog(null, "Información del Cliente:\n" +
+                                "Nombre: " + clienteConsultado.getNombre() + "\n" +
+                                "Apellidos: " + clienteConsultado.getApellidos() + "\n" +
+                                "Usuario: " + clienteConsultado.getUsuario() + "\n" +
+                                "Habilitado: " + (clienteConsultado.isHabilitado() ? "Sí" : "No"));
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Cliente no encontrado");
+                    }
+                    break;
+                case 6:
+                    clienteUsuario = JOptionPane.showInputDialog("Ingrese el usuario del cliente que desea inactivar");
+                    clienteManager.inactivarUsuario(clienteUsuario);
+                    Cliente clienteInactivado = clienteManager.consultarClientePorUsuario(clienteUsuario);
+                    if (clienteInactivado != null) {
+                        JOptionPane.showMessageDialog(null, "Cliente inactivado:\n" +
+                                "Nombre: " + clienteInactivado.getNombre() + "\n" +
+                                "Apellidos: " + clienteInactivado.getApellidos() + "\n" +
+                                "Usuario: " + clienteInactivado.getUsuario() + "\n" +
+                                "Habilitado: " + (clienteInactivado.isHabilitado() ? "Sí" : "No"));
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Cliente no encontrado");
+                    }
+                    break;
+                case 7:
                     JOptionPane.showMessageDialog(null, "Gracias por usar nuestro programa");
                     break;
                 default:
                     JOptionPane.showMessageDialog(null, "Opción inválida");
                     break;
             }
-        } while (opcion != 4);
+        } while (opcion != 7);
     }
 }
