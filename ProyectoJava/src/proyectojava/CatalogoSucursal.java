@@ -6,6 +6,7 @@ public class CatalogoSucursal {
     private String Horario;
     private String Telefono;
     private String Correo;
+    private String Estado;
     
     public CatalogoSucursal(){
         this.NombreSucursal = "";
@@ -13,6 +14,7 @@ public class CatalogoSucursal {
         this.Horario = "";
         this.Telefono = "";
         this.Correo = "";
+        this.Estado = "";
     }
 
     public String getNombreSucursal() {
@@ -54,9 +56,16 @@ public class CatalogoSucursal {
     public void setCorreo(String Correo) {
         this.Correo = Correo;
     }
-    
-    public String informacion(){
-        return "Nombre: " + NombreSucursal + "\nLugar: " + Lugar + "\nHorario: " + Horario + "\nTelefono: " + Telefono + "\nCorreo: " + Correo;
+
+    public String getEstado() {
+        return Estado;
+    }
+
+    public void setEstado(String Estado) {
+        this.Estado = Estado;
     }
     
+     public String informacion(){
+        return "Nombre: " + NombreSucursal + "\nLugar: " + Lugar + "\nHorario: " + Horario + "\nTelefono: " + Telefono + "\nCorreo: " + Correo;
+    }
 }

@@ -7,8 +7,10 @@ public class Main {
     public static void main(String[] args) {
         EmpleadoManager empleadoManager = new EmpleadoManager();
         ClienteManager clienteManager = new ClienteManager();
+        SucursalManager sucursalManager = new SucursalManager();
         String usuario;
         String nombre, apellido, estado, password;
+        String nsucursal, lugar, horario, telefono, correo;
         int opcion;
 
         do {
@@ -17,8 +19,9 @@ public class Main {
                     + "3. Inactivar empleado\n"
                     + "4. Agregar cliente\n"
                     + "5. Consultar cliente\n"
-                    + "6. Inactivar cliente\n"
-                    + "7. Salir";
+                    + "6. Agregar sucursal al catalogo\n"
+                    + "7. Inactivar cliente\n"
+                    + "8. Salir";
             opcion = Integer.parseInt(JOptionPane.showInputDialog(mensaje));
 
             switch (opcion) {
@@ -83,6 +86,24 @@ public class Main {
                     }
                     break;
                 case 6:
+                    nsucursal = JOptionPane.showInputDialog("Ingrese el nombre de la sucursal");
+                    lugar = JOptionPane.showInputDialog("Ingrese el lugar de la sucursal");
+                    horario = JOptionPane.showInputDialog("Ingrese el horario de la sucursal");
+                    telefono = JOptionPane.showInputDialog("Ingrese el telefono de l sucursal");
+                    correo = JOptionPane.showInputDialog("Ingrese el correo de la sucursal");
+                    estado = JOptionPane.showInputDialog("Ingrese el estado de la sucursal");
+
+                    CatalogoSucursal sucursal = new CatalogoSucursal();
+                    sucursal.setNombreSucursal(nsucursal);
+                    sucursal.setLugar(lugar);
+                    sucursal.setHorario(horario);
+                    sucursal.setTelefono(telefono);
+                    sucursal.setCorreo(correo);
+                    sucursal.setEstado(estado);
+                    
+                    sucursalManager.agregarSucursal(sucursal);
+                    break;
+                case 7:
                     usuario = JOptionPane.showInputDialog("Ingrese el usuario del cliente que desea inactivar");
                     clienteManager.inactivarCliente(usuario);
                     Cliente clienteInactivado = clienteManager.consultarCliente(usuario);
@@ -92,7 +113,7 @@ public class Main {
                         JOptionPane.showMessageDialog(null, "Cliente no encontrado");
                     }
                     break;
-                case 7:
+                case 8:
                     JOptionPane.showMessageDialog(null, "Gracias por usar nuestro programa");
                     break;
                 default:
