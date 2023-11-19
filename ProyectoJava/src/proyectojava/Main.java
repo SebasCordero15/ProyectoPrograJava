@@ -8,6 +8,7 @@ public class Main {
         EmpleadoManager empleadoManager = new EmpleadoManager();
         ClienteManager clienteManager = new ClienteManager();
         SucursalManager sucursalManager = new SucursalManager();
+        CatalogoEquipos catalogoEquipos = new CatalogoEquipos();
         String usuario;
         String nombre, apellido, estado, password;
         String nsucursal, lugar, horario, telefono, correo;
@@ -23,7 +24,10 @@ public class Main {
                     + "7. Agregar sucursal al catalogo\n"
                     + "8. Editar sucursal\n"
                     + "9. Inactivar sucursal\n"
-                    + "10. Salir";
+                    + "10. Agregar equipo\n"
+                    + "11. Editar equipo\n"
+                    + "12. Inactivar equipo\n"
+                    + "13. Salir";
             opcion = Integer.parseInt(JOptionPane.showInputDialog(mensaje));
 
             switch (opcion) {
@@ -142,9 +146,33 @@ public class Main {
                     JOptionPane.showMessageDialog(null, "La sucursal ha sido desactivada exitosamente");
                     break;
                 case 10:
+                    //agragar equipo
+                    String nombreEquipo = JOptionPane.showInputDialog("Ingrese el nombre del equipo");
+                    String categoria = JOptionPane.showInputDialog("Ingrese la categoría del equipo");
+                    String empleadoACargo = JOptionPane.showInputDialog("Ingrese el empleado a cargo del equipo");
+                    String sucursalEquipo = JOptionPane.showInputDialog("Ingrese la sucursal del equipo");
+
+                    catalogoEquipos.agregarEquipo(nombreEquipo, categoria, empleadoACargo, sucursalEquipo);
+                    break;
+                case 11:
+                    // editar equipo
+                    String nombreEquipoEditar = JOptionPane.showInputDialog("Ingrese el nombre del equipo que desea editar");
+                    String nuevaCategoria = JOptionPane.showInputDialog("Ingrese la nueva categoría del equipo");
+                    String nuevoEmpleadoACargo = JOptionPane.showInputDialog("Ingrese el nuevo empleado a cargo del equipo");
+                    String nuevaSucursalEquipo = JOptionPane.showInputDialog("Ingrese la nueva sucursal del equipo");
+
+                    catalogoEquipos.editarEquipo(nombreEquipoEditar, nuevaCategoria, nuevoEmpleadoACargo, nuevaSucursalEquipo);
+                    break;
+                case 12:
+                    // inactivar equipo
+                    String nombreEquipoInactivar = JOptionPane.showInputDialog("Ingrese el nombre del equipo que desea inactivar");
+
+                    catalogoEquipos.inactivarEquipo(nombreEquipoInactivar);
+                    break;
+                case 13:
                     JOptionPane.showMessageDialog(null, "Gracias por usar nuestro programa");
                     break;
             }
-        } while (opcion != 10);
+        } while (opcion != 13);
     }
 }

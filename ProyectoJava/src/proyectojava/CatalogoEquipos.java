@@ -1,10 +1,13 @@
 package proyectojava;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CatalogoEquipos {
-    private java.util.List<Equipo> equipos;
+    private List<Equipo> equipos;
 
     public CatalogoEquipos() {
-        this.equipos = new java.util.ArrayList<>();
+        this.equipos = new ArrayList<>();
     }
 
     public void agregarEquipo(String nombre, String categoria, String empleado, String sucursal) {
@@ -17,6 +20,7 @@ public class CatalogoEquipos {
         equipos.add(nuevoEquipo);
         System.out.println("Equipo agregado correctamente.");
     }
+
     public void editarEquipo(String nombre, String nuevaCategoria, String nuevoEmpleado, String nuevaSucursal) {
         Equipo equipo = buscarEquipo(nombre);
         if (equipo != null) {
@@ -38,8 +42,12 @@ public class CatalogoEquipos {
             System.out.println("El equipo no se encontró, no se pudo inactivar.");
         }
     }
-    
-    private Equipo buscarEquipo(String nombre) {
+
+    public boolean existeEquipo(String nombre) {
+        return buscarEquipo(nombre) != null;
+    }
+
+    public Equipo buscarEquipo(String nombre) {
         for (Equipo equipo : equipos) {
             if (equipo.getNombreEquipo().equals(nombre)) {
                 return equipo;
@@ -47,7 +55,6 @@ public class CatalogoEquipos {
         }
         return null;
     }
-
 
     public static void main(String[] args) {
         CatalogoEquipos catalogo = new CatalogoEquipos();
