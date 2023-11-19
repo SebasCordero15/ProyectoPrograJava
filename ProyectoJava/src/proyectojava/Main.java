@@ -19,12 +19,15 @@ public class Main {
                     + "3. Inactivar empleado\n"
                     + "4. Agregar cliente\n"
                     + "5. Consultar cliente\n"
-                    + "6. Agregar sucursal al catalogo\n"
-                    + "7. Inactivar cliente\n"
-                    + "8. Salir";
+                    + "6. Inactivar cliente\n"
+                    + "7. Agregar sucursal al catalogo\n"
+                    + "8. Editar sucursal\n"
+                    + "9. Inactivar sucursal\n"
+                    + "10. Salir";
             opcion = Integer.parseInt(JOptionPane.showInputDialog(mensaje));
 
             switch (opcion) {
+                // Agregar empleado
                 case 1:
                     nombre = JOptionPane.showInputDialog("Ingrese el nombre del empleado");
                     apellido = JOptionPane.showInputDialog("Ingrese el apellido del empleado");
@@ -42,6 +45,7 @@ public class Main {
                     empleadoManager.agregarEmpleado(empleado);
                     break;
                 case 2:
+                    // Consultar empleado
                     usuario = JOptionPane.showInputDialog("Ingrese el usuario del empleado que desea consultar");
                     Empleado empleadoConsultado = empleadoManager.consultarEmpleado(usuario);
                     if (empleadoConsultado != null) {
@@ -51,6 +55,7 @@ public class Main {
                     }
                     break;
                 case 3:
+                    //inactivar empleado
                     usuario = JOptionPane.showInputDialog("Ingrese el usuario del empleado que desea inactivar");
                     empleadoManager.inactivarEmpleado(usuario);
                     empleadoConsultado = empleadoManager.consultarEmpleado(usuario);
@@ -61,6 +66,7 @@ public class Main {
                     }
                     break;
                 case 4:
+                    //agregar cliente
                     nombre = JOptionPane.showInputDialog("Ingrese el nombre del cliente");
                     apellido = JOptionPane.showInputDialog("Ingrese el apellido del cliente");
                     usuario = JOptionPane.showInputDialog("Ingrese el usuario del cliente");
@@ -77,6 +83,7 @@ public class Main {
                     clienteManager.agregarCliente(nuevoCliente);
                     break;
                 case 5:
+                    //consultar cliente
                     usuario = JOptionPane.showInputDialog("Ingrese el usuario del cliente que desea consultar");
                     Cliente clienteConsultado = clienteManager.consultarCliente(usuario);
                     if (clienteConsultado != null) {
@@ -86,6 +93,19 @@ public class Main {
                     }
                     break;
                 case 6:
+                    //inactivar cliente
+                    usuario = JOptionPane.showInputDialog("Ingrese el usuario del cliente que desea inactivar");
+                    clienteManager.inactivarCliente(usuario);
+                    Cliente clienteInactivado = clienteManager.consultarCliente(usuario);
+                    if (clienteInactivado != null) {
+                        JOptionPane.showMessageDialog(null, "Cliente inactivado exitosamente");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Cliente no encontrado");
+                    }
+                    break;
+
+                case 7:
+                    //agregar sucursal
                     nsucursal = JOptionPane.showInputDialog("Ingrese el nombre de la sucursal");
                     lugar = JOptionPane.showInputDialog("Ingrese el lugar de la sucursal");
                     horario = JOptionPane.showInputDialog("Ingrese el horario de la sucursal");
@@ -100,26 +120,31 @@ public class Main {
                     sucursal.setTelefono(telefono);
                     sucursal.setCorreo(correo);
                     sucursal.setEstado(estado);
-                    
+
                     sucursalManager.agregarSucursal(sucursal);
                     break;
-                case 7:
-                    usuario = JOptionPane.showInputDialog("Ingrese el usuario del cliente que desea inactivar");
-                    clienteManager.inactivarCliente(usuario);
-                    Cliente clienteInactivado = clienteManager.consultarCliente(usuario);
-                    if (clienteInactivado != null) {
-                        JOptionPane.showMessageDialog(null, "Cliente inactivado exitosamente");
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Cliente no encontrado");
-                    }
-                    break;
                 case 8:
-                    JOptionPane.showMessageDialog(null, "Gracias por usar nuestro programa");
+                    //editar sucursal
+                    nombre = JOptionPane.showInputDialog("Ingrese el nombre de la sucursal que desea editar");
+                    lugar = JOptionPane.showInputDialog("Ingrese el nuevo lugar de la sucursal");
+                    horario = JOptionPane.showInputDialog("Ingrese el nuevo horario de la sucursal");
+                    telefono = JOptionPane.showInputDialog("Ingrese el nuevo telefono de la sucursal");
+                    correo = JOptionPane.showInputDialog("Ingrese el nuevo correo de la sucursal");
+                    sucursalManager.editarSucursal(nombre, lugar, horario, telefono, correo);
                     break;
                 default:
                     JOptionPane.showMessageDialog(null, "Opción inválida");
                     break;
+                case 9:
+                    //inactivar sucursal
+                    nombre = JOptionPane.showInputDialog("Ingrese el nombre de la sucursal que desea inactivar");
+                    sucursalManager.inactivarSucursal(nombre);
+                    JOptionPane.showMessageDialog(null, "La sucursal ha sido desactivada exitosamente");
+                    break;
+                case 10:
+                    JOptionPane.showMessageDialog(null, "Gracias por usar nuestro programa");
+                    break;
             }
-        } while (opcion != 7);
+        } while (opcion != 10);
     }
 }
