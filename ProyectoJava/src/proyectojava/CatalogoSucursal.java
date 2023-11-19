@@ -66,6 +66,6 @@ public class CatalogoSucursal {
     }
     
      public String informacion(){
-        return "Nombre: " + NombreSucursal + "\nLugar: " + Lugar + "\nHorario: " + Horario + "\nTelefono: " + Telefono + "\nCorreo: " + Correo;
+        return "Nombre: " + NombreSucursal + "\nLugar: " + Lugar + "\nHorario: " + Horario + "\nTelefono: " + Telefono + "\nCorreo: " + Correo + "\nEstado: " + Estado;
     }
 }

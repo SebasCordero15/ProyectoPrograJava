@@ -22,12 +22,13 @@ public class Main {
                     + "5. Consultar cliente\n"
                     + "6. Inactivar cliente\n"
                     + "7. Agregar sucursal al catalogo\n"
-                    + "8. Editar sucursal\n"
-                    + "9. Inactivar sucursal\n"
-                    + "10. Agregar equipo\n"
-                    + "11. Editar equipo\n"
-                    + "12. Inactivar equipo\n"
-                    + "13. Salir";
+                    + "8. Consultar sucursales\n"
+                    + "9. Editar sucursal\n"
+                    + "10. Inactivar sucursal\n"
+                    + "11. Agregar equipo\n"
+                    + "12. Editar equipo\n"
+                    + "13. Inactivar equipo\n"
+                    + "14. Salir";
             opcion = Integer.parseInt(JOptionPane.showInputDialog(mensaje));
 
             switch (opcion) {
@@ -128,6 +129,16 @@ public class Main {
                     sucursalManager.agregarSucursal(sucursal);
                     break;
                 case 8:
+                      // Consultar sucursal
+                    nsucursal = JOptionPane.showInputDialog("Ingrese el nombre de la sucursal que desea consultar");
+                    CatalogoSucursal sucrusalConsultada = sucursalManager.consultarSucursal(nsucursal);
+                    if (sucrusalConsultada != null) {
+                        JOptionPane.showMessageDialog(null, sucrusalConsultada.informacion());
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Sucursal no encontrado");
+                    }
+                    break;
+                case 9:
                     //editar sucursal
                     nombre = JOptionPane.showInputDialog("Ingrese el nombre de la sucursal que desea editar");
                     lugar = JOptionPane.showInputDialog("Ingrese el nuevo lugar de la sucursal");
@@ -139,13 +150,13 @@ public class Main {
                 default:
                     JOptionPane.showMessageDialog(null, "Opción inválida");
                     break;
-                case 9:
+                case 10:
                     //inactivar sucursal
                     nombre = JOptionPane.showInputDialog("Ingrese el nombre de la sucursal que desea inactivar");
                     sucursalManager.inactivarSucursal(nombre);
                     JOptionPane.showMessageDialog(null, "La sucursal ha sido desactivada exitosamente");
                     break;
-                case 10:
+                case 11:
                     //agragar equipo
                     String nombreEquipo = JOptionPane.showInputDialog("Ingrese el nombre del equipo");
                     String categoria = JOptionPane.showInputDialog("Ingrese la categoría del equipo");
@@ -154,7 +165,7 @@ public class Main {
 
                     catalogoEquipos.agregarEquipo(nombreEquipo, categoria, empleadoACargo, sucursalEquipo);
                     break;
-                case 11:
+                case 12:
                     // editar equipo
                     String nombreEquipoEditar = JOptionPane.showInputDialog("Ingrese el nombre del equipo que desea editar");
                     String nuevaCategoria = JOptionPane.showInputDialog("Ingrese la nueva categoría del equipo");
@@ -163,16 +174,16 @@ public class Main {
 
                     catalogoEquipos.editarEquipo(nombreEquipoEditar, nuevaCategoria, nuevoEmpleadoACargo, nuevaSucursalEquipo);
                     break;
-                case 12:
+                case 13:
                     // inactivar equipo
                     String nombreEquipoInactivar = JOptionPane.showInputDialog("Ingrese el nombre del equipo que desea inactivar");
 
                     catalogoEquipos.inactivarEquipo(nombreEquipoInactivar);
                     break;
-                case 13:
+                case 14:
                     JOptionPane.showMessageDialog(null, "Gracias por usar nuestro programa");
                     break;
             }
-        } while (opcion != 13);
+        } while (opcion != 14);
     }
 }
