@@ -1,46 +1,41 @@
 package proyectojava;
 
 public class EquiposManager {
- private CatalogoEquipos[] equipos;
- private int numEquipos;
+   private CatalogoEquipos[] equipos;
 
- public EquiposManager() {
-     this.equipos = new CatalogoEquipos[10]; 
-     this.numEquipos = 0;
- }
+   public EquiposManager() {
+       this.equipos = new CatalogoEquipos[10]; 
+   }
 
- public void agregarEquipo(CatalogoEquipos equipo) {
-     this.equipos[this.numEquipos] = equipo;
-     this.numEquipos++;
- }
+   public void agregarEquipo(CatalogoEquipos equipo) {
+       for (int i = 0; i < equipos.length; i++) {
+           if (equipos[i] == null) {
+               equipos[i] = equipo;
+               break;
+           }
+       }
+   }
 
- public CatalogoEquipos consultarEquipo(String nombre) {
-     for (int i = 0; i < this.numEquipos; i++) {
-         Equipo equipoEnCatalogo = this.equipos[i].buscarEquipo(nombre);
-         if (equipoEnCatalogo != null) {
-             return this.equipos[i];
-         }
-     }
-     return null;
- }
+   public CatalogoEquipos consultarEquipo(String nombre) {
+       for (CatalogoEquipos catalogo : equipos) {
+           if (catalogo != null && catalogo.buscarEquipo(nombre) != null) {
+               return catalogo;
+           }
+       }
+       return null;
+   }
 
- public void editarEquipo(String nombre, String nuevaCategoria, String nuevoEmpleado, String nuevaSucursal) {
-     CatalogoEquipos catalogo = this.consultarEquipo(nombre);
-     if (catalogo != null) {
-         catalogo.editarEquipo(nombre, nuevaCategoria, nuevoEmpleado, nuevaSucursal);
-         System.out.println("Equipo editado correctamente.");
-     } else {
-         System.out.println("El equipo no se encontró, no se pudo editar.");
-     }
- }
+   public void editarEquipo(String nombre, String nuevaCategoria, String nuevoEmpleado, String nuevaSucursal) {
+       CatalogoEquipos catalogo = consultarEquipo(nombre);
+       if (catalogo != null) {
+           catalogo.editarEquipo(nombre, nuevaCategoria, nuevoEmpleado, nuevaSucursal);
+       }
+   }
 
- public void inactivarEquipo(String nombre) {
-     CatalogoEquipos catalogo = this.consultarEquipo(nombre);
-     if (catalogo != null) {
-         catalogo.inactivarEquipo(nombre);
-         System.out.println("Equipo inactivado correctamente.");
-     } else {
-         System.out.println("El equipo no se encontró, no se pudo inactivar.");
-     }
- }
+   public void inactivarEquipo(String nombre) {
+       CatalogoEquipos catalogo = consultarEquipo(nombre);
+       if (catalogo != null) {
+           catalogo.inactivarEquipo(nombre);
+       }
+   }
 }
