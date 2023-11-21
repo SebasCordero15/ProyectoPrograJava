@@ -60,7 +60,7 @@ public class Main {
                     }
                     break;
                 case 3:
-                    //inactivar empleado
+                    // inactivar empleado
                     usuario = JOptionPane.showInputDialog("Ingrese el usuario del empleado que desea inactivar");
                     empleadoManager.inactivarEmpleado(usuario);
                     empleadoConsultado = empleadoManager.consultarEmpleado(usuario);
@@ -71,7 +71,7 @@ public class Main {
                     }
                     break;
                 case 4:
-                    //agregar cliente
+                    // agregar cliente
                     nombre = JOptionPane.showInputDialog("Ingrese el nombre del cliente");
                     apellido = JOptionPane.showInputDialog("Ingrese el apellido del cliente");
                     usuario = JOptionPane.showInputDialog("Ingrese el usuario del cliente");
@@ -88,7 +88,7 @@ public class Main {
                     clienteManager.agregarCliente(nuevoCliente);
                     break;
                 case 5:
-                    //consultar cliente
+                    // consultar cliente
                     usuario = JOptionPane.showInputDialog("Ingrese el usuario del cliente que desea consultar");
                     Cliente clienteConsultado = clienteManager.consultarCliente(usuario);
                     if (clienteConsultado != null) {
@@ -98,7 +98,7 @@ public class Main {
                     }
                     break;
                 case 6:
-                    //inactivar cliente
+                    // inactivar cliente
                     usuario = JOptionPane.showInputDialog("Ingrese el usuario del cliente que desea inactivar");
                     clienteManager.inactivarCliente(usuario);
                     Cliente clienteInactivado = clienteManager.consultarCliente(usuario);
@@ -110,7 +110,7 @@ public class Main {
                     break;
 
                 case 7:
-                    //agregar sucursal
+                    // agregar sucursal
                     nsucursal = JOptionPane.showInputDialog("Ingrese el nombre de la sucursal");
                     lugar = JOptionPane.showInputDialog("Ingrese el lugar de la sucursal");
                     horario = JOptionPane.showInputDialog("Ingrese el horario de la sucursal");
@@ -129,7 +129,7 @@ public class Main {
                     sucursalManager.agregarSucursal(sucursal);
                     break;
                 case 8:
-                      // Consultar sucursal
+                    // Consultar sucursal
                     nsucursal = JOptionPane.showInputDialog("Ingrese el nombre de la sucursal que desea consultar");
                     CatalogoSucursal sucrusalConsultada = sucursalManager.consultarSucursal(nsucursal);
                     if (sucrusalConsultada != null) {
@@ -139,7 +139,7 @@ public class Main {
                     }
                     break;
                 case 9:
-                    //editar sucursal
+                    // editar sucursal
                     nombre = JOptionPane.showInputDialog("Ingrese el nombre de la sucursal que desea editar");
                     lugar = JOptionPane.showInputDialog("Ingrese el nuevo lugar de la sucursal");
                     horario = JOptionPane.showInputDialog("Ingrese el nuevo horario de la sucursal");
@@ -151,13 +151,13 @@ public class Main {
                     JOptionPane.showMessageDialog(null, "Opción inválida");
                     break;
                 case 10:
-                    //inactivar sucursal
+                    // inactivar sucursal
                     nombre = JOptionPane.showInputDialog("Ingrese el nombre de la sucursal que desea inactivar");
                     sucursalManager.inactivarSucursal(nombre);
                     JOptionPane.showMessageDialog(null, "La sucursal ha sido desactivada exitosamente");
                     break;
                 case 11:
-                    //agragar equipo
+                    // agragar equipo
                     String nombreEquipo = JOptionPane.showInputDialog("Ingrese el nombre del equipo");
                     String categoria = JOptionPane.showInputDialog("Ingrese la categoría del equipo");
                     String empleadoACargo = JOptionPane.showInputDialog("Ingrese el empleado a cargo del equipo");
@@ -167,16 +167,20 @@ public class Main {
                     break;
                 case 12:
                     // editar equipo
-                    String nombreEquipoEditar = JOptionPane.showInputDialog("Ingrese el nombre del equipo que desea editar");
+                    String nombreEquipoEditar = JOptionPane
+                            .showInputDialog("Ingrese el nombre del equipo que desea editar");
                     String nuevaCategoria = JOptionPane.showInputDialog("Ingrese la nueva categoría del equipo");
-                    String nuevoEmpleadoACargo = JOptionPane.showInputDialog("Ingrese el nuevo empleado a cargo del equipo");
+                    String nuevoEmpleadoACargo = JOptionPane
+                            .showInputDialog("Ingrese el nuevo empleado a cargo del equipo");
                     String nuevaSucursalEquipo = JOptionPane.showInputDialog("Ingrese la nueva sucursal del equipo");
 
-                    catalogoEquipos.editarEquipo(nombreEquipoEditar, nuevaCategoria, nuevoEmpleadoACargo, nuevaSucursalEquipo);
+                    catalogoEquipos.editarEquipo(nombreEquipoEditar, nuevaCategoria, nuevoEmpleadoACargo,
+                            nuevaSucursalEquipo);
                     break;
                 case 13:
                     // inactivar equipo
-                    String nombreEquipoInactivar = JOptionPane.showInputDialog("Ingrese el nombre del equipo que desea inactivar");
+                    String nombreEquipoInactivar = JOptionPane
+                            .showInputDialog("Ingrese el nombre del equipo que desea inactivar");
 
                     catalogoEquipos.inactivarEquipo(nombreEquipoInactivar);
                     break;
