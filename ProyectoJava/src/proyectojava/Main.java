@@ -8,7 +8,7 @@ public class Main {
         EmpleadoManager empleadoManager = new EmpleadoManager();
         ClienteManager clienteManager = new ClienteManager();
         SucursalManager sucursalManager = new SucursalManager();
-        CatalogoEquipos catalogoEquipos = new CatalogoEquipos();
+        CatalogoEquipos catalogoEquipos = new CatalogoEquipos(10);
         String usuario;
         String nombre, apellido, estado, password;
         String nsucursal, lugar, horario, telefono, correo;

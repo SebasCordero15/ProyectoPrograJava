@@ -1,13 +1,12 @@
 package proyectojava;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class CatalogoEquipos {
-    private List<Equipo> equipos;
+    private Equipo[] equipos;
+    private int cantidadEquipos;
 
-    public CatalogoEquipos() {
-        this.equipos = new ArrayList<>();
+    public CatalogoEquipos(int capacidadMaxima) {
+        this.equipos = new Equipo[capacidadMaxima];
+        this.cantidadEquipos = 0;
     }
 
     public void agregarEquipo(String nombre, String categoria, String empleado, String sucursal) {
@@ -16,9 +15,14 @@ public class CatalogoEquipos {
             return;
         }
 
-        Equipo nuevoEquipo = new Equipo(nombre, categoria, empleado, sucursal);
-        equipos.add(nuevoEquipo);
-        System.out.println("Equipo agregado correctamente.");
+        if (cantidadEquipos < equipos.length) {
+            Equipo nuevoEquipo = new Equipo(nombre, categoria, empleado, sucursal);
+            equipos[cantidadEquipos] = nuevoEquipo;
+            cantidadEquipos++;
+            System.out.println("Equipo agregado correctamente.");
+        } else {
+            System.out.println("No se puede agregar más equipos. Capacidad máxima alcanzada.");
+        }
     }
 
     public void editarEquipo(String nombre, String nuevaCategoria, String nuevoEmpleado, String nuevaSucursal) {
@@ -36,7 +40,8 @@ public class CatalogoEquipos {
     public void inactivarEquipo(String nombre) {
         Equipo equipo = buscarEquipo(nombre);
         if (equipo != null) {
-            equipos.remove(equipo);
+            equipos[cantidadEquipos] = null; // Marca el espacio como nulo (opcional)
+            cantidadEquipos--;
             System.out.println("Equipo inactivado correctamente.");
         } else {
             System.out.println("El equipo no se encontró, no se pudo inactivar.");
@@ -49,59 +54,52 @@ public class CatalogoEquipos {
 
     public Equipo buscarEquipo(String nombre) {
         for (Equipo equipo : equipos) {
-            if (equipo.getNombreEquipo().equals(nombre)) {
+            if (equipo != null && equipo.getNombreEquipo().equals(nombre)) {
                 return equipo;
             }
         }
         return null;
     }
 
-    public static void main(String[] args) {
-        CatalogoEquipos catalogo = new CatalogoEquipos();
+    private static class Equipo {
+        private String nombreEquipo;
+        private String categoria;
+        private String empleadoACargo;
+        private String nombreSucursal;
 
-        catalogo.agregarEquipo("Laptop1", "Laptops", "Juan Perez", "Sucursal A");
-        catalogo.agregarEquipo("Laptop1", "Laptops", "Juan Perez", "Sucursal A");
-    }
-}
+        public Equipo(String nombre, String categoria, String empleado, String sucursal) {
+            this.nombreEquipo = nombre;
+            this.categoria = categoria;
+            this.empleadoACargo = empleado;
+            this.nombreSucursal = sucursal;
+        }
 
-class Equipo {
-    private String nombreEquipo;
-    private String categoria;
-    private String empleadoACargo;
-    private String NombreSucursal;
+        public String getNombreEquipo() {
+            return nombreEquipo;
+        }
 
-    public Equipo(String nombre, String categoria, String empleado, String sucursal) {
-        this.nombreEquipo = nombre;
-        this.categoria = categoria;
-        this.empleadoACargo = empleado;
-        this.NombreSucursal = sucursal;
-    }
+        public String getCategoria() {
+            return categoria;
+        }
 
-    public String getNombreEquipo() {
-        return nombreEquipo;
-    }
+        public String getEmpleadoACargo() {
+            return empleadoACargo;
+        }
 
-    public String getCategoria() {
-        return categoria;
-    }
+        public String getNombreSucursal() {
+            return nombreSucursal;
+        }
 
-    public String getEmpleadoACargo() {
-        return empleadoACargo;
-    }
+        public void setCategoria(String nuevaCategoria) {
+            this.categoria = nuevaCategoria;
+        }
 
-    public String getSucursal() {
-        return NombreSucursal;
-    }
+        public void setEmpleadoACargo(String nuevoEmpleado) {
+            this.empleadoACargo = nuevoEmpleado;
+        }
 
-    public void setCategoria(String nuevaCategoria) {
-        this.categoria = nuevaCategoria;
-    }
-
-    public void setEmpleadoACargo(String nuevoEmpleado) {
-        this.empleadoACargo = nuevoEmpleado;
-    }
-
-    public void setSucursal(String nuevaSucursal) {
-        this.NombreSucursal = nuevaSucursal;
+        public void setSucursal(String nuevaSucursal) {
+            this.nombreSucursal = nuevaSucursal;
+        }
     }
 }
