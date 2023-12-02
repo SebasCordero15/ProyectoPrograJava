@@ -23,13 +23,18 @@ public class FacturaManager {
 
     public void mostrar() {
         int x;
+        String nombre = "";
         String s = "";
+        nombre = JOptionPane.showInputDialog(null,"Ingrese el nombre de la factura que desea ver: ");
         for (x = 0; x < facturas.length; x++) {
-            if (facturas[x] != null) {
+            if (facturas[x] != null){
+                if (nombre.equals(facturas[x].getNombre())) {
                 s = s + "Nombre: " + facturas[x].getNombre() + "\nFecha: " + facturas[x].getFecha() + "\nHora: " + facturas[x].getHora() + "\nMonto a pagar: "
                         + facturas[x].getMonto() + "\nReparacion realizada: " + facturas[x].getArticulo() + "\n\n";
+                }
             }
+            
         }
-        JOptionPane.showMessageDialog(null, "--------------------\nSu factura es:\n" + s + "\n--------------------");
+        JOptionPane.showMessageDialog(null, "--------------------\n Su factura es:\n" + s + "\n--------------------");
     }
 }
