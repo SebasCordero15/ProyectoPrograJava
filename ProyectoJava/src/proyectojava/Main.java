@@ -9,6 +9,7 @@ public class Main {
         ClienteManager clienteManager = new ClienteManager();
         SucursalManager sucursalManager = new SucursalManager();
         CatalogoEquipos catalogoEquipos = new CatalogoEquipos(10);
+        FacturaManager facturaManager = new FacturaManager();
         String usuario;
         String nombre, apellido, estado, password;
         String nsucursal, lugar, horario, telefono, correo;
@@ -28,7 +29,9 @@ public class Main {
                     + "11. Agregar equipo\n"
                     + "12. Editar equipo\n"
                     + "13. Inactivar equipo\n"
-                    + "14. Salir";
+                    + "14. Crear factura\n"
+                    + "15. Mostrar facturas\n"
+                    + "16. Salir";
             opcion = Integer.parseInt(JOptionPane.showInputDialog(mensaje));
 
             switch (opcion) {
@@ -181,13 +184,22 @@ public class Main {
                     // inactivar equipo
                     String nombreEquipoInactivar = JOptionPane
                             .showInputDialog("Ingrese el nombre del equipo que desea inactivar");
-
                     catalogoEquipos.inactivarEquipo(nombreEquipoInactivar);
                     break;
                 case 14:
+                    // Crear factura
+                    Factura nuevaFactura = new Factura();
+                    facturaManager.crearFactura(nuevaFactura);
+                    break;
+                case 15:
+                    // Mostrar facturas
+                    facturaManager.mostrar();
+                    break;
+
+                case 16:
                     JOptionPane.showMessageDialog(null, "Gracias por usar nuestro programa");
                     break;
             }
-        } while (opcion != 14);
+        } while (opcion != 16);
     }
 }
