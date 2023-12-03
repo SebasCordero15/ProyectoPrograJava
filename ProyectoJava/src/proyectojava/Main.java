@@ -10,6 +10,7 @@ public class Main {
         SucursalManager sucursalManager = new SucursalManager();
         CatalogoEquipos catalogoEquipos = new CatalogoEquipos(10);
         FacturaManager facturaManager = new FacturaManager();
+        CajaManager cajaManager = new CajaManager(); 
         String usuario;
         String nombre, apellido, estado, password;
         String nsucursal, lugar, horario, telefono, correo;
@@ -190,6 +191,7 @@ public class Main {
                     // Crear factura
                     Factura nuevaFactura = new Factura();
                     facturaManager.crearFactura(nuevaFactura);
+                    cajaManager.registrarFactura(nuevaFactura);
                     break;
                 case 15:
                     // Mostrar facturas
@@ -201,5 +203,7 @@ public class Main {
                     break;
             }
         } while (opcion != 16);
+        
+        cajaManager.mostrarResumenDia();
     }
 }

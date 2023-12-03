@@ -11,7 +11,8 @@ public class FacturaManager {
         f.setNombre(JOptionPane.showInputDialog(null, "Ingrese el nombre del cliente: "));
         f.setFecha(JOptionPane.showInputDialog(null, "Ingrese la fecha de la compra: "));
         f.setHora(JOptionPane.showInputDialog(null, "Ingrese la hora en que se realizo la compra: "));
-        f.setMonto(JOptionPane.showInputDialog(null, "Ingrese el monto de la compra: "));
+        double monto = Double.parseDouble(JOptionPane.showInputDialog(null, "Ingrese el monto de la compra: "));
+        factura.setMonto(monto);
         f.setArticulo(JOptionPane.showInputDialog(null, "Ingrese la reparacion que se realizo: "));
         for (int x = 0; x < facturas.length; x++) {
             if (facturas[x] == null) {

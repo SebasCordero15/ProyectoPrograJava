@@ -3,14 +3,14 @@ public class Factura {
     private String nombre;
     private String fecha;
     private String hora;
-    private String monto;
+    private double monto;
     private String articulo;
     
     public Factura(){
         this.nombre = "";
         this.fecha = "";
         this.hora = "";
-        this.monto = "";
+        this.monto = monto;
         this.articulo = "";
     }
 
@@ -38,11 +38,11 @@ public class Factura {
         this.hora = hora;
     }
 
-    public String getMonto() {
-        return monto;
+    public double getMonto() {
+        return monto = monto;
     }
 
-    public void setMonto(String monto) {
+    public void setMonto(double monto) {
         this.monto = monto;
     }
 
@@ -53,5 +53,5 @@ public class Factura {
     public void setArticulo(String articulo) {
         this.articulo = articulo;
     }
-    
 }
+    
