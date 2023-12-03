@@ -18,21 +18,23 @@ public class Main {
 
         do {
             String mensaje = "1. Agregar empleado\n"
-                    + "2. Consultar empleado\n"
-                    + "3. Inactivar empleado\n"
-                    + "4. Agregar cliente\n"
-                    + "5. Consultar cliente\n"
-                    + "6. Inactivar cliente\n"
-                    + "7. Agregar sucursal al catalogo\n"
-                    + "8. Consultar sucursales\n"
-                    + "9. Editar sucursal\n"
-                    + "10. Inactivar sucursal\n"
-                    + "11. Agregar equipo\n"
-                    + "12. Editar equipo\n"
+                    + "2. Consultar Empleado\n"
+                    + "3. Inactivar Empleado\n"
+                    + "4. Agregar Cliente\n"
+                    + "5. Consultar Cliente\n"
+                    + "6. Inactivar Cliente\n"
+                    + "7. Agregar Sucursal al catalogo\n"
+                    + "8. Consultar Sucursales\n"
+                    + "9. Editar Sucursal\n"
+                    + "10. Inactivar Sucursal\n"
+                    + "11. Agregar Equipo\n"
+                    + "12. Editar Equipo\n"
                     + "13. Inactivar equipo\n"
                     + "14. Crear factura\n"
                     + "15. Mostrar facturas\n"
-                    + "16. Salir";
+                    + "16. Cierre de Cajas\n"
+                    + "17.Listado de Clientes\n"
+                    + "18. Salir";
             opcion = Integer.parseInt(JOptionPane.showInputDialog(mensaje));
 
             switch (opcion) {
@@ -197,13 +199,19 @@ public class Main {
                     // Mostrar facturas
                     facturaManager.mostrar();
                     break;
-
                 case 16:
+                    // Mostrar ingresos del día
+                    cajaManager.mostrarIngresosDelDia();
+                    break;
+                case 17:
+                    // Mostrar listado de clientes
+                    cajaManager.mostrarListadoClientes();
+                    break;
+
+                case 18:
                     JOptionPane.showMessageDialog(null, "Gracias por usar nuestro programa");
                     break;
             }
-        } while (opcion != 16);
-        
-        cajaManager.mostrarResumenDia();
+        } while (opcion != 18);     
     }
 }

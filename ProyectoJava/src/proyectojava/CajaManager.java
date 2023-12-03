@@ -4,14 +4,18 @@ import javax.swing.JOptionPane;
 
 public class CajaManager {
     private FacturaManager facturaManager;
+    private ClienteManager clienteManager;
     private Caja caja;
 
     public CajaManager() {
         this.facturaManager = new FacturaManager();
-        this.caja = new Caja();
+        this.clienteManager = new ClienteManager();
     }
 
     public void registrarFactura(Factura factura) {
+        if (this.caja == null) {
+            this.caja = new Caja();
+        }
         double monto = factura.getMonto();
         caja.sumarIngreso(monto);
     }
@@ -21,11 +25,15 @@ public class CajaManager {
     }
 
     public void mostrarListadoClientes() {
-        facturaManager.mostrar();
-    }
+        Cliente[] listadoClientes = clienteManager.obtenerListadoClientes();
+        StringBuilder mensajeClientes = new StringBuilder("Listado de clientes:\n");
 
-    public void mostrarResumenDia() {
-        mostrarIngresosDelDia();
+        for (Cliente cliente : listadoClientes) {
+            if (cliente != null) {
+                mensajeClientes.append(cliente.informacion()).append("\n\n");
+            }
+        }
+
+        JOptionPane.showMessageDialog(null, mensajeClientes.toString());
     }
 }
-

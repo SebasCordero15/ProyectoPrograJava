@@ -54,4 +54,3 @@ public class Factura {
         this.articulo = articulo;
     }
 }
-    

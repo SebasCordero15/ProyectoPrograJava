@@ -15,4 +15,3 @@ public class Caja {
         ingresosDia += monto;
     }
 }
-
