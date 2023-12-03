@@ -40,7 +40,7 @@ public class CatalogoEquipos {
     public void inactivarEquipo(String nombre) {
         Equipo equipo = buscarEquipo(nombre);
         if (equipo != null) {
-            equipos[cantidadEquipos] = null; // Marca el espacio como nulo (opcional)
+            equipos[cantidadEquipos] = null;
             cantidadEquipos--;
             System.out.println("Equipo inactivado correctamente.");
         } else {
