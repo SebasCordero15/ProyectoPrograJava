@@ -33,8 +33,7 @@ public class Main {
                     + "14. Crear factura\n"
                     + "15. Mostrar facturas\n"
                     + "16. Cierre de Cajas\n"
-                    + "17.Listado de Clientes\n"
-                    + "18. Salir";
+                    + "17. Salir";
             opcion = Integer.parseInt(JOptionPane.showInputDialog(mensaje));
 
             switch (opcion) {
@@ -200,18 +199,17 @@ public class Main {
                     facturaManager.mostrar();
                     break;
                 case 16:
+                    // Cierre de Cajas
                     // Mostrar ingresos del día
                     cajaManager.mostrarIngresosDelDia();
-                    break;
-                case 17:
+            
                     // Mostrar listado de clientes
                     cajaManager.mostrarListadoClientes();
                     break;
-
-                case 18:
+                case 17:
                     JOptionPane.showMessageDialog(null, "Gracias por usar nuestro programa");
                     break;
             }
-        } while (opcion != 18);     
+        } while (opcion != 17);     
     }
 }

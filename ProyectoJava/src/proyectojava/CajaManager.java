@@ -3,37 +3,30 @@ package proyectojava;
 import javax.swing.JOptionPane;
 
 public class CajaManager {
-    private FacturaManager facturaManager;
-    private ClienteManager clienteManager;
     private Caja caja;
 
     public CajaManager() {
-        this.facturaManager = new FacturaManager();
-        this.clienteManager = new ClienteManager();
+        this.caja = new Caja();
     }
 
     public void registrarFactura(Factura factura) {
-        if (this.caja == null) {
-            this.caja = new Caja();
-        }
-        double monto = factura.getMonto();
-        caja.sumarIngreso(monto);
+        caja.registrarFactura(factura);
     }
 
     public void mostrarIngresosDelDia() {
-        JOptionPane.showMessageDialog(null, "Ingresos del día: ₡" + caja.getIngresosDia());
+        JOptionPane.showMessageDialog(null, "Monto Total del Día: $" + caja.obtenerMontoTotal());
     }
 
     public void mostrarListadoClientes() {
-        Cliente[] listadoClientes = clienteManager.obtenerListadoClientes();
-        StringBuilder mensajeClientes = new StringBuilder("Listado de clientes:\n");
+        Factura[] facturas = caja.obtenerListadoFacturas();
+        StringBuilder listadoClientes = new StringBuilder("Listado de Clientes:\n");
 
-        for (Cliente cliente : listadoClientes) {
-            if (cliente != null) {
-                mensajeClientes.append(cliente.informacion()).append("\n\n");
+        for (Factura factura : facturas) {
+            if (factura != null) {
+                listadoClientes.append(factura.getNombre()).append("\n");
             }
         }
 
-        JOptionPane.showMessageDialog(null, mensajeClientes.toString());
+        JOptionPane.showMessageDialog(null, listadoClientes.toString());
     }
 }
